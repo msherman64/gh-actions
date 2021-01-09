@@ -1,0 +1,18 @@
+inputs:
+  reporter:
+    description: 'reviewdog reporter type'
+    default: 'github-pr-review'
+  level:
+    description: 'output log severity'
+    default: 'warning'
+  reviewdog_tool:
+    description: 'reviewdog action to run'
+    default: 'reviewdog/action-template@v1'
+runs:
+  using: "composite"
+  steps:
+    - uses: ${{ inputs.reviewdog_tool }}
+      with:
+        github_token: ${{ secrets.github_token }}
+        reporter: ${{ inputs.reporter }}
+        level: ${{ inputs.warning }}
